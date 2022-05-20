@@ -6,5 +6,5 @@ class Config(object):
     #SQLALCHEMY_TRACK_MODIFICATIONS=False
     MYSQL_HOST='localhost'
     MYSQL_USER='root'
-    MYSQL_PASSWORD='1995812zwj'
+    MYSQL_PASSWORD='xxxxxxxx'
     MYSQL_DB='gameswapDB'
