@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+    <p>Welcome, {{user_detail['first_name']}} {{user_detail['last_name']}} !</p>
+    <p> My Rating: {{user_detail['rating']}} </p>
+    {% if user_detail['unaccepted']==0 %}
+    <p> Unaccepted Swaps: {{user_detail['unaccepted']}} </p>
+    {% elif user_detail['unaccepted']<5 and user_detail['old']==0 %}
+    <p> Unaccepted Swaps: <a href="{{ url_for('pendingswap') }}">
+        {{user_detail['unaccepted']}} </a> </p>
+    {% else %}
+    <p> Unaccepted Swaps:<a href="{{ url_for('pendingswap') }}">
+    <b style="color:red">{{user_detail['unaccepted']}}</b></a></p>
+    {% endif %}
+
+    {% if user_detail['unrated']==0 %}
+    <p> Unrated swaps: {{user_detail['unrated']}} </p>
+    {% elif user_detail['unrated']<2 %}
+    <p> Unrated swaps: <a href="{{ url_for('rateswap') }}"> {{user_detail['unrated']}} </a> </p>
+    {% else %}
+    <p> Unrated swaps: <a href="{{ url_for('rateswap') }}"> <b style="color:red">{{user_detail['unrated']}}</b> </a> </p>
+    {% endif %}
+
+    <a href="{{ url_for('update') }}">Update Info</a>
+    <a href="{{ url_for('list') }}">List Item</a>
+    <a href="{{ url_for('myitem') }}">My Items</a>
+    <a href="{{ url_for('searchitem') }}">Search Items</a>
+    <a href="{{ url_for('swaphistory') }}">Swap History</a>
+    <!--{% for post in posts %}
+    <div><p>{{ post.author.email }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}-->
+{% endblock %}

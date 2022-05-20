@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Swap Details</h1>
+    {% for i in range(0,5) %}
+<p><b>{{swap_detail[i][0]}}</b>  {{swap_detail[i][1]}}</p>
+    {% endfor %}
+<h1>User Details</h1>
+    {% for i in range(5,11) %}
+<p><b>{{swap_detail[i][0]}}</b>  {{swap_detail[i][1]}}</p>
+    {% endfor %}
+<h1>Proposed Item</h1>
+    {% for i in range(11,16) %}
+<p><b>{{swap_detail[i][0]}}</b>  {{swap_detail[i][1]}}</p>
+    {% endfor %}
+<h1>Desired Item</h1>
+    {% for i in range(16,swap_detail|length) %}
+<p><b>{{swap_detail[i][0]}}</b>  {{swap_detail[i][1]}}</p>
+    {% endfor %}
+{% endblock %}

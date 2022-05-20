@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Swap History Summary</h1>
+    <!--upper table title-->
+<form>
+        {{ form.hidden_tag() }}
+    <table>
+        <!-- title column-->
+
+        <tr>
+            {% for col_name in upper_table[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+        </tr>
+
+        <!-- main content-->
+        {% if upper_table[1]|length==0%}
+        <tr><th>Proposer</th><th>0</th><th>0</th><th>0</th><th>0.0</th></tr>
+        <tr><th>Counterparty</th><th>0</th><th>0</th><th>0</th><th>0.0</th></tr>
+        {% endif %}
+
+        {% if upper_table[1]|length==1 and upper_table[1][0][0]=='Counterparty' %}
+        <tr><th>Proposer</th><th>0</th><th>0</th><th>0</th><th>0.0</th></tr>
+        {% endif %}
+
+
+
+        {% for row in range(upper_table[1]|length) %}
+        <tr>
+            {% for col in range(upper_table[1][row]|length) %}
+            {% if col+1==upper_table[1][row]|length and upper_table[1][row][col]>=50 %}
+            <th style="background-color: coral">{{upper_table[1][row][col]}}</th>
+            {% else %}
+            <th>{{upper_table[1][row][col]}}</th>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        {% if (upper_table[1]|length==1) and upper_table[1][0][0]=='Proposer' %}
+        <tr><th>Counterparty</th><th>0</th><th>0</th><th>0</th><th>0.0</th></tr>
+        {% endif %}
+    </table>
+
+
+
+    <h1>Detail Records</h1>
+        <table>
+        <!-- title column-->
+        <tr>
+            {% for col_name in lower_table[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+            <th>Detail</th>
+        </tr>
+        <!-- main content-->
+        {% for row in lower_table[1] %}
+        <tr>
+            {% for value in row %}
+                {% if value == "Wait for rating" %}
+                    <th id="rating">
+                        <select name="rate" id={{row[0]}} action="/">
+                            <option value="N" selected="selected"></option>
+                            <option value="{{row[0]}}/1/{{row[4]}}">1</option>
+                            <option value="{{row[0]}}/2/{{row[4]}}">2</option>
+                            <option value="{{row[0]}}/3/{{row[4]}}">3</option>
+                            <option value="{{row[0]}}/4/{{row[4]}}">4</option>
+                            <option value="{{row[0]}}/5/{{row[4]}}">5</option>
+                        </select>
+                    </th>
+                {% else %}
+                <th>{{value}}</th>
+                {% endif %}
+            {% endfor %}
+            <th><a href="{{ url_for('swapdetail',recordid=row[0]) }}">Detail</a></th>
+            <!--<th>{{ form.submit() }}</th>-->
+        </tr>
+        {% endfor %}
+        <br></br>
+        {{ form.submit() }}
+    </table>
+    <!--{% for post in posts %}
+    <div><p>{{ post.author.email }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}-->
+    </form>
+{% endblock %}
+
+{% block script %}
+<script defer type="text/javascript" >
+    {% include('js/swap_history.js') %}
+</script>
+{% endblock %}

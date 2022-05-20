@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Update User Information</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        <!-- email -->
+        email
+        {{email}}<br>
+
+        <!--password-->
+        {{ form.password.label }}
+        {{ form.password(size=32) }}<br>
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- nick name -->
+        {{ form.nickname.label }}
+        {{ form.nickname(size=32) }}<br>
+        {% for error in form.nickname.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- first name -->
+        {{ form.firstname.label }}
+        {{ form.firstname(size=32) }}<br>
+        {% for error in form.firstname.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- last name -->
+        {{ form.lastname.label }}
+        {{ form.lastname(size=32) }}<br>
+        {% for error in form.lastname.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- city -->
+        {{ form.city.label }}
+        {{ form.city(size=32) }}<br>
+        {% for error in form.city.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- state -->
+        {{ form.state.label }}
+        {{ form.state(size=32) }}<br>
+        {% for error in form.state.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- postalcode -->
+        {{ form.postalcode.label }}
+        {{ form.postalcode(size=32) }}<br>
+        {% for error in form.postalcode.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- phonenumber -->
+        {{ form.phonenumber.label }}
+        {{ form.phonenumber(size=32) }}<br>
+        {% for error in form.phonenumber.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- phonetype -->
+        {{ form.phonetype.label }}
+        {{ form.phonetype(size=32) }}<br>
+        {% for error in form.phonetype.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- showphone -->
+        {{ form.showphone.label }}
+        {{ form.showphone(size=32) }}<br>
+        {% for error in form.showphone.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+
+        <!--submit-->
+        <p>{{ form.submit() }}</p>
+    </form>
+
+
+
+{% endblock %}

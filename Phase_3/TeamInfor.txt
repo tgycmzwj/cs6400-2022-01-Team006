@@ -1,0 +1,12 @@
+To initialize the database, please first run
+(1) "Phase_3/app/insert_data.py", which defines the database/schema and reads
+          data from "Phase_3/data" into those tables
+(2) "Phase_3/app/cal_dist.sql", a user defined function to calculate distance
+          between any pair of zip codes
+
+All table creation, data insertion, table modification and data extraction
+    queries are included in corresponding functions in "Phase_3/app/queries.py"
+
+
+Please IGNORE the folder called "Phase_3/sqlfiles" as those files were only used
+    to quickly perform exercises to ensure the correctness of sql output 

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% if title %}
+        <title>{{ title }} - Game Swap</title>
+        {% else %}
+        <title>Welcome to Game Swap</title>
+        {% endif %}
+    </head>
+<body>
+    <! –– natigation bar ––>
+    <div>Game Swap:
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if session['logged_in'] == True %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+        <a href="{{ url_for('register') }}">Register</a>
+    </div>
+
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <!-- to be filled by inheritance-->
+    {% block content %}{% endblock %}
+    </body>
+{% block script %}{% endblock %}
+</html>

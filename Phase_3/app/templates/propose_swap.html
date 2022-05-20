@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Propose Swap</h1>
+    {% if item_detail['Distance']>100 %}
+    <div style="background-color:red;color:white;padding:20px;">
+        <h1>The other user is {{item_detail['Distance']}} miles away</h1>
+    </div>
+    {% endif %}
+    <h1>You are proposing a trade for {{item_detail['title']}}</h1>
+
+    <form action="" method="post">
+        <table>
+        <tr>
+            {% for col_name in avail_item[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+            <th>Propose</th>
+        </tr>
+        <!-- main content-->
+        {% for row in avail_item[1] %}
+        <tr>
+            {% for value in row %}
+            <th>{{value}}</th>
+            {% endfor %}
+            <th>
+                <input type="radio" id="item_to_propose" name="item_to_propose" value="{{row[0]}}/{{item_detail['itemID']}}">
+            </th>
+        </tr>
+        {% endfor %}
+        </table>
+        <!--submit-->
+        {% if avail_item[1]|length>0 %}
+        {{ form.submit() }}
+        {% else %}
+        Sorry but you have no items available for swap!
+        {% endif %}
+    </form>
+{% endblock %}
+
+{% block script %}
+<script defer type="text/javascript" >
+    {% include('js/propose_swap.js') %}
+</script>
+{% endblock %}

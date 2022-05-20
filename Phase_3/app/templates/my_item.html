@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Item counts</h1>
+    <!--upper table title-->
+    <table>
+        <!-- title column-->
+        <tr>
+            {% for col_name in upper_table[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+        </tr>
+        <!-- main content-->
+        {% for row in upper_table[1] %}
+        <tr>
+            {% for value in row %}
+            <th>{{value}}</th>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>My Items</h1>
+        <table>
+        <!-- title column-->
+        <tr>
+            {% for col_name in lower_table[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+            <th>Detail</th>
+        </tr>
+        <!-- main content-->
+        {% for row in range(lower_table[1]|length) %}
+        <tr>
+            {% for col in range(lower_table[1][row]|length) %}
+            {% if col+1==lower_table[1][row]|length and lower_table[1][row][col]|length>100 %}
+            <th>{{lower_table[1][row][col][:100]}}...</th>
+            {% else %}
+            <th>{{lower_table[1][row][col]}}</th>
+            {% endif %}
+            {% endfor %}
+            <th><a href="{{ url_for('itemdetail',itemid=lower_table[1][row][0]) }}">Detail</a></th>
+        </tr>
+        {% endfor %}
+        </table>
+    <!--{% for post in posts %}
+    <div><p>{{ post.author.email }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}-->
+{% endblock %}

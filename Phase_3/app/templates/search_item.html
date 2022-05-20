@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+
+        {% for error in form.search_type.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        {% for subfield in form.search_type %}
+        {{subfield}} {{subfield.label}}
+        {% if subfield.id.endswith('0') %}
+        {{form.search_keyword}}
+        {% for error in form.search_keyword.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {% if subfield.id.endswith('2') %}
+        {{form.search_miles}}
+        {% for error in form.search_miles.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {% if subfield.id.endswith('3') %}
+        {{form.search_postalcode}}
+        {% for error in form.search_postalcode.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        <br>
+        {% endfor %}
+
+
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

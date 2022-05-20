@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Item Details</h1>
+    {% for key,val in item_detail.items() %}
+    {% if key!='email' and key!='Distance' and key!='description' %}
+    {{key}}:{{val}}</br>
+    {% elif key=='description' and val=='' %}
+    {% elif key=='description' and val!='' %}
+    {{key}}:{{val}}</br>
+    {% elif key=='Distance' %}
+    {% if val>100 %}
+        <div style="background-color:red;color:black;padding:20px;">
+            <h1>{{key}}:{{val}}</h1>
+        </div>
+    {% elif val>50 %}
+        <div style="background-color:orange;color:black;padding:20px;">
+            <h1>{{key}}:{{val}}</h1>
+        </div>
+    {% elif val>35 %}
+        <div style="background-color:yellow;color:black;padding:20px;">
+            <h1>{{key}}:{{val}}</h1>
+        </div>
+    {% elif val==0 %}
+    {% else %}
+        <div style="background-color:green;color:black;padding:20px;">
+            <h1>{{key}}:{{val}}</h1>
+        </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    {% if item_detail['email']==email %}
+    <p>This is your own item!</p>
+    {% elif item_detail['email']!=email and unparam[0]<=5 and unparam[1]<=2 %}
+    <a href="{{ url_for('proposeswap',itemid=item_detail['itemID']) }}">Propose Swap</a>
+    {% elif unparam[0]>5 or unparam[1]>2 %}
+    <p>Please accept/reject/rate your existing swaps first to propose a new swap</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>Rate Swaps</h1>
+<form>
+    {{ form.hidden_tag() }}
+    <table>
+        <tr>
+            {% for col_name in unrated_swap[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+        </tr>
+        {% for row in range(unrated_swap[1]|length) %}
+        <tr>
+            {% for col in range(unrated_swap[1][row]|length) %}
+            {% if col+1!=unrated_swap[1][row]|length %}
+            <th>{{unrated_swap[1][row][col]}}</th>
+            {% else %}
+            <th>
+            <select name="rate" id={{unrated_swap[1][row][0]}} action="/">
+                    <option value="N" selected="selected"></option>
+                    <option value="{{unrated_swap[1][row][0]}}/1/{{unrated_swap[1][row][2]}}">1</option>
+                    <option value="{{unrated_swap[1][row][0]}}/2/{{unrated_swap[1][row][2]}}">2</option>
+                    <option value="{{unrated_swap[1][row][0]}}/3/{{unrated_swap[1][row][2]}}">3</option>
+                    <option value="{{unrated_swap[1][row][0]}}/4/{{unrated_swap[1][row][2]}}">4</option>
+                    <option value="{{unrated_swap[1][row][0]}}/5/{{unrated_swap[1][row][2]}}">5</option>
+            </select></th>
+            {% endif %}
+            {% endfor %}
+        </tr>
+
+        {% endfor %}
+    </table>
+    {{ form.submit() }}
+    {% endblock %}
+
+{% block script %}
+<script defer type="text/javascript" >
+    {% include('js/unrated_swap.js') %}
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

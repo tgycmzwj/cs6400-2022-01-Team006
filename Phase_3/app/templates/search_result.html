@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Search Results</h1>
+        <table>
+        <!-- title column-->
+        <tr>
+            {% for col_name in result_table[0] %}
+            <th>{{col_name}}</th>
+            {% endfor %}
+        </tr>
+        <!-- main content-->
+
+        {% for row in result_table[1] %}
+        <tr>
+            {% for i in range(row|length) %}
+
+            {% if i==2 and search_content[0]=='1' and search_content[1] in row[i] %}
+            <th style="background-color: deepskyblue">{{row[i]}}</th>
+            {% elif i==4 and row[i]|length>100 and search_content[0]=='1' and search_content[1] in row[i] %}
+            <th style="background-color: deepskyblue">{{row[i][:100]}}...</th>
+            {% elif i==4 and row[i]|length>100 %}
+            <th>{{row[i][:100]}}...</th>
+            {% else %}
+            <th>{{row[i]}}</th>
+            {% endif %}
+
+            {% endfor %}
+            <th><a href="{{ url_for('itemdetail',itemid=row[0]) }}">Detail</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('searchitem') }}">New Search</a>
+    <!--{% for post in posts %}
+    <div><p>{{ post.author.email }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}-->
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <h1>New Item Listing</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <!-- gametype -->
+        {{ form.gametype.label }}
+        {{ form.gametype(size=32) }}<br>
+        {% for error in form.gametype.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- title -->
+        {{ form.title.label }}
+        {{ form.title(size=32) }}<br>
+        {% for error in form.title.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- condition -->
+        {{ form.game_condition.label }}
+        {{ form.game_condition(size=32) }}<br>
+        {% for error in form.game_condition.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        <!-- jigsaw puzzle: piececount -->
+        {{ form.piececount.label }}
+        {{ form.piececount(size=32) }}<br>
+        {% for error in form.piececount.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        <!-- video game: platform -->
+        {{ form.video_platform.label }}
+        {{ form.video_platform(size=32) }}<br>
+        {% for error in form.video_platform.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!-- computer game: media -->
+        {{ form.video_media.label }}
+        {{ form.video_media(size=32) }}<br>
+        {% for error in form.video_media.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        <!-- computer game: platform -->
+        {{ form.computer_platform.label }}
+        {{ form.computer_platform(size=32) }}<br>
+        {% for error in form.computer_platform.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+
+        <!-- description -->
+        {{ form.description.label }}
+        {{ form.description(size=32) }}<br>
+        {% for error in form.description.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        <!--submit-->
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+
+{% block script %}
+<script defer type="text/javascript">
+    {% include('js/list_item.js') %}
+</script>
+{% endblock %}

@@ -1,0 +1,41 @@
+﻿itemID,platformID,media
+3,1,optical disc
+8,2,game card
+13,3,game card
+18,1,cartridge
+23,2,optical disc
+28,3,cartridge
+33,1,cartridge
+38,2,optical disc
+43,3,cartridge
+48,1,game card
+53,2,game card
+58,3,optical disc
+63,1,optical disc
+68,2,optical disc
+73,3,game card
+78,1,cartridge
+83,2,game card
+88,3,cartridge
+93,1,optical disc
+98,2,game card
+103,3,game card
+108,1,cartridge
+113,2,optical disc
+118,3,cartridge
+123,1,cartridge
+128,2,optical disc
+133,3,cartridge
+138,1,game card
+143,2,game card
+148,3,optical disc
+153,1,optical disc
+158,2,optical disc
+163,3,game card
+168,1,cartridge
+173,2,game card
+178,3,cartridge
+183,1,game card
+188,2,cartridge
+193,3,optical disc
+198,1,game card
